@@ -1,0 +1,47 @@
+html {
+  background: black;
+}
+
+body {
+ position: relative;
+ height: 100%;
+}
+
+#globalCanvas {
+  position: fixed;
+  top:0; left:0; bottom: 0; right: 0;
+  width: 100%; height: 100%;
+}
+
+.decalCount {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 1em;
+  font-size: 2em;
+  color: white;
+  font-family: 'Arial';
+  z-index: 99;
+  display: none;
+}
+
+#saveCanvas {
+  position: fixed;
+  top: 0; left: 0;
+  padding: 1em;
+  z-index: 9999999999;
+}
+
+.drawing {
+  position: fixed;
+}
+
+@keyframes pulse {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+   filter: hue-rotate(360deg);
+  }
+}
+

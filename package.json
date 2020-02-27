@@ -1,0 +1,48 @@
+{
+  "name": "environment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/_server",
+    "dev:phone": "parcel watch phone/index.html --out-dir public/phone --no-hmr",
+    "dev:projector": "parcel watch projector/index.html --out-dir public/projector --no-hmr --public-url /projector",
+    "dev:review": "parcel watch review/index.html --out-dir public/review --no-hmr --public-url /review",
+    "dev": "npm-run-all --parallel dev:*",
+    "build:phone": "parcel build phone/index.html --out-dir public/phone",
+    "build:projector": "parcel build projector/index.html --out-dir public/projector --public-url /projector",
+    "build:review": "parcel build review/index.html --out-dir public/review --public-url /review",
+    "build": "npm-run-all build:*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.5.5",
+    "@tweenjs/tween.js": "^17.4.0",
+    "babel-polyfill": "^6.26.0",
+    "basic-auth": "^2.0.1",
+    "blueimp-load-image": "^2.23.0",
+    "client-compress": "^2.1.2",
+    "dat.gui": "^0.7.6",
+    "dotenv": "^8.0.0",
+    "dotenv-expand": "^5.1.0",
+    "express": "^4.17.1",
+    "idle-js": "^1.2.0",
+    "lodash.random": "^3.2.0",
+    "nanohtml": "^1.8.1",
+    "npm-run-all": "^4.1.5",
+    "parcel-bundler": "^1.12.3",
+    "pixelate": "0.0.5",
+    "pm2": "^3.5.1",
+    "projector": "^3.1.0",
+    "simplex-noise": "^2.4.0",
+    "socket.io": "^2.2.0",
+    "uniqid": "^5.0.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "sass": "^1.22.9"
+  }
+}

@@ -1,0 +1,21 @@
+html {
+  background: black;
+}
+
+body {
+ position: relative;
+ height: 100%;
+}
+
+canvas {
+  border: solid 1px white;
+  // padding: 1rem;
+  width: 12.5%;
+  background: black;
+  @media screen and (max-width: 768px){
+    width: 49%;
+  }
+  &.hidden {
+    filter: invert(1);
+  }
+}

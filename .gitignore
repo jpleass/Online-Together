@@ -1,0 +1,12 @@
+.c9
+.cache
+node_modules
+content
+
+# System files
+# ------------
+
+Icon
+.DS_Store
+
+/node_modules
