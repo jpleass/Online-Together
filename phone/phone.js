@@ -27,7 +27,7 @@ const createButton = () => html`
 const createLoader = () => html`
   <div id="loader">Loading.<span class="invisible-dot">.</span><span class="invisible-dot">.</span></div>
 `
-alert('To participate, please select an image from your Photo Library');
+alert('Select an image from your Photo Library');
 const start = async imageID => {
   
   const id = `${ socket.id }_${ imageID }`
@@ -76,7 +76,7 @@ const start = async imageID => {
     scale: DPR
   });
   document.body.appendChild( maskedImage.canvas );
-  alert('Please draw');
+  alert('Draw to transfer the image to the canvas');
   maskedImage.canvas.addEventListener( 'touchstart', e => {
     e.preventDefault();
     const position = getPosition( e );
