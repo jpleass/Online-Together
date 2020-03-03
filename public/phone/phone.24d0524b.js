@@ -19810,7 +19810,7 @@ var createLoader = function createLoader() {
   return (0, _nanohtml.default)(_templateObject3());
 };
 
-alert('To participate, please select an image from your Photo Library');
+alert('Select an image from your Photo Library');
 
 var start =
 /*#__PURE__*/
@@ -19875,7 +19875,7 @@ function () {
               scale: DPR
             });
             document.body.appendChild(maskedImage.canvas);
-            alert('Please draw');
+            alert('Draw to transfer the image to the canvas');
             maskedImage.canvas.addEventListener('touchstart', function (e) {
               e.preventDefault();
               var position = getPosition(e);

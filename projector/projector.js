@@ -78,4 +78,10 @@ const refreshPage = () => {
   loadDecals().then( loadedDecals => loadedDecals.slice(-config.maxDecals).forEach( ( d, i ) => decals[ i ] = d ) );
 }
 
+window.addEventListener('keypress', (e) => {
+  if (e.key === 'i') {
+    document.querySelector('.instructions').classList.toggle('instructions--hidden')
+  }
+})
+
 export default refreshPage;

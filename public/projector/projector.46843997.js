@@ -23831,6 +23831,7 @@ var config = {
   releaseDuration: 5000,
   maxDecals: 500
 };
+gui.remember(config);
 gui.add(config, 'scale', .1, 2, .01);
 gui.add(config, 'startingScale', .1, 3, .01);
 gui.add(config, 'minScale', .1, 1, .01);
@@ -25683,6 +25684,11 @@ var refreshPage = function refreshPage() {
   });
 };
 
+window.addEventListener('keypress', function (e) {
+  if (e.key === 'i') {
+    document.querySelector('.instructions').classList.toggle('instructions--hidden');
+  }
+});
 var _default = refreshPage;
 exports.default = _default;
 },{"babel-polyfill":"../node_modules/babel-polyfill/lib/index.js","socket.io-client":"../node_modules/socket.io-client/lib/index.js","@tweenjs/tween.js":"../node_modules/@tweenjs/tween.js/src/Tween.js","./load":"load.js","../utils/loadImage":"../utils/loadImage.js","./renderer":"renderer.js","./decal":"decal.js","./config":"config.js"}]},{},["projector.js"], null)

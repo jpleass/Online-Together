@@ -3,6 +3,7 @@ import refreshPage from "./projector.js";
 
 
 const gui = new GUI();
+
 const config = {
   scale: .6,
   startingScale: 1.5,
@@ -13,6 +14,8 @@ const config = {
   releaseDuration: 5000,
   maxDecals: 500
 }
+
+gui.remember(config);
 
 gui.add( config, 'scale', .1, 2, .01 );
 gui.add( config, 'startingScale', .1, 3, .01 );
