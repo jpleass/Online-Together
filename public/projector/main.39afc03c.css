@@ -44,11 +44,16 @@ body {
 .instructions {
   position: fixed;
   bottom: 35px;
-  left: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: fit-content;
+  margin: auto;
+  display: inline-block;
   background: #fff;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: normal;
   font-style: italic;
+  font-size: 40px;
   padding: 6px 8px;
 }
 
