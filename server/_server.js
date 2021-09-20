@@ -10,36 +10,8 @@ const app = express();
 
 app.use(express.static(__dirname + '/static', { dotfiles: 'allow' }))
 
-// Certificate
-// const privateKey = fs.readFileSync('/etc/letsencrypt/live/online-together.net/privkey.pem', 'utf8');
-// const certificate = fs.readFileSync('/etc/letsencrypt/live/online-together.net/cert.pem', 'utf8');
-// const ca = fs.readFileSync('/etc/letsencrypt/live/online-together.net/chain.pem', 'utf8');
 
-
-const privateKey = fs.readFileSync('./server/www.online-together.net.key', 'utf8');
-const certificate = fs.readFileSync('./server/www.online-together.net.crt', 'utf8');
-const ca = fs.readFileSync('./server/GandiStandardSSLCA2.pem', 'utf8');
-
-
-const credentials = {
-  key: privateKey,
-  cert: certificate,
-  ca: ca
-};
-
-
-const envDev = true;
-let server;
-
-if ( envDev ) {
-
-  server = http.createServer(app);
-
-} else {
-
-  server = https.createServer(credentials, app);
-
-}
+const server = http.createServer(app);
 const io = socketIO(server);
 
 const TIMEOUT = 60000;
@@ -209,23 +181,15 @@ app.use('/projector', express.static('public/projector'));
 app.use('/review', express.static('public/review'));
 
 
-if( envDev ) {
   
-  server.listen(
-    process.env.PORT,
-    () => console.log(`👍 ${process.env.HOST}:${process.env.PORT}`)
-  )
-
-} else {
-
-  server.listen(443, () => {
-    console.log('HTTPS Server running on port 443');
-  });
-
-}
+server.listen(
+  process.env.PORT,
+  () => console.log(`server listening to ${process.env.HOST}:${process.env.PORT}`)
+)
 
 
-http.createServer(function (req, res) {
-  res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
-  res.end();
-}).listen(80);
+
+// http.createServer(function (req, res) {
+//   res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+//   res.end();
+// }).listen(80);
