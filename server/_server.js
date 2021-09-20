@@ -36,7 +36,6 @@ phoneSocket.on('connection', socket => {
   }
 
   const passThrough = event => socket.on(event, message => {
-    console.log(event);
     resetIdleTimer();
     projectorSocket.emit(event, message);
   })
@@ -45,8 +44,6 @@ phoneSocket.on('connection', socket => {
   passThrough('phone:touchstart');
   passThrough('phone:touchmove');
   passThrough('phone:drawingFinished');
-
-
 
   socket.on('disconnect', () => projectorSocket.emit('phone:disconnect', { id }))
 
@@ -128,6 +125,7 @@ projectorSocket.on('connection', socket => {
 //   }
 
   projectorConnected = true;
+
   socket.on('disconnect', () => projectorConnected = false);
 
   socket.on('projector:ready', message => {
