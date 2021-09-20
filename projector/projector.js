@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 import TWEEN from '@tweenjs/tween.js';
 import loadDecals from './load';
 import loadImage from '../utils/loadImage';
-import { canvas, render } from './renderer';
+import { canvas, render, clearRender } from './renderer';
 import Decal, { placeDecals } from './decal';
 import config from './config';
 
@@ -13,9 +13,11 @@ const decals = {};
 
 loadDecals().then( loadedDecals => loadedDecals.slice(-config.maxDecals).forEach( ( d, i ) => decals[ i ] = d ) );
 
+const $decalCount = document.querySelector('.decalCount')
+
 const tick = () => {
   TWEEN.update();
-  document.querySelector('.decalCount').innerHTML = Object.keys( decals ).length;
+  $decalCount.innerHTML = Object.keys( decals ).length;
   const now = Date.now();
   const canvasSize = [ canvas.width, canvas.height ];
   Object.values( decals ).forEach( decal => decal.update( now, canvasSize ) );
@@ -76,6 +78,7 @@ socket.on("server:refresh", msg => {
 const refreshPage = () => {
   Object.keys( decals ).forEach( key => delete decals[ key ] );
   loadDecals().then( loadedDecals => loadedDecals.slice(-config.maxDecals).forEach( ( d, i ) => decals[ i ] = d ) );
+  clearRender()
 }
 
 window.addEventListener('keypress', (e) => {
