@@ -27,16 +27,19 @@ const credentials = {
   ca: ca
 };
 
-// @Jack: Comment this for to disable local server.
-const server = http.createServer(app);
 
-// @Jack: Uncomment this for https server on hosting.
-// const httpsServer = https.createServer(credentials, app);
+const envDev = true;
+let server;
 
-// @Jack: Uncomment this for https server on hosting.
-// const io = socketIO(httpsServer);
+if ( envDev ) {
 
-// @Jack: Comment this for to disable local server.
+  server = http.createServer(app);
+
+} else {
+
+  server = https.createServer(credentials, app);
+
+}
 const io = socketIO(server);
 
 const TIMEOUT = 60000;
@@ -205,16 +208,21 @@ app.use(auth);
 app.use('/projector', express.static('public/projector'));
 app.use('/review', express.static('public/review'));
 
-// @Jack: Comment this for to disable local server.
-server.listen(
-  process.env.PORT,
-  () => console.log(`👍 ${process.env.HOST}:${process.env.PORT}`)
-)
 
-// @Jack: Uncomment this for https server on hosting.
-// httpsServer.listen(443, () => {
-//   console.log('HTTPS Server running on port 443');
-// });
+if( envDev ) {
+  
+  server.listen(
+    process.env.PORT,
+    () => console.log(`👍 ${process.env.HOST}:${process.env.PORT}`)
+  )
+
+} else {
+
+  server.listen(443, () => {
+    console.log('HTTPS Server running on port 443');
+  });
+
+}
 
 
 http.createServer(function (req, res) {
