@@ -27,7 +27,6 @@ const createButton = () => html`
 const createLoader = () => html`
   <div id="loader">Loading.<span class="invisible-dot">.</span><span class="invisible-dot">.</span></div>
 `
-alert('Select an image from your Photo Library');
 const start = async imageID => {
   
   const id = `${ socket.id }_${ imageID }`
@@ -106,3 +105,4 @@ const start = async imageID => {
 }
 
 socket.once( 'connect', () => start( 0 ) );
+alert('Select an image from your Photo Library');
