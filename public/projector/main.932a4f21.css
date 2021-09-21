@@ -1,2 +1,0 @@
-html{background:#000}body{position:relative;height:100%}#globalCanvas{top:0;left:0;width:100%;height:100%}#globalCanvas,.decalCount{position:fixed;bottom:0;right:0}.decalCount{padding:1em;font-size:2em;color:#fff;font-family:Arial;z-index:99;opacity:0}#saveCanvas{top:0;left:0;padding:1em;z-index:9999999999}#saveCanvas,.drawing{position:fixed}@keyframes pulse{0%{filter:hue-rotate(0deg)}to{filter:hue-rotate(1turn)}}
-/*# sourceMappingURL=/projector/main.932a4f21.css.map */
