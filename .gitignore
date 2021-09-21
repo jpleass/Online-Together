@@ -12,3 +12,8 @@ Icon
 .DS_Store
 
 /node_modules
+
+
+# Data
+/public/canvas/
+/public/decals/
