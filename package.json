@@ -8,9 +8,9 @@
     "dev:projector": "parcel watch projector/index.html --dist-dir public/projector --no-hmr --public-url /projector",
     "dev:review": "parcel watch review/index.html --dist-dir public/review --no-hmr --public-url /review",
     "dev": "npm-run-all --parallel dev:*",
-    "build:phone": "parcel build phone/index.html --dist-dir public/phone",
-    "build:projector": "parcel build projector/index.html --dist-dir public/projector --public-url /projector",
-    "build:review": "parcel build review/index.html --dist-dir public/review --public-url /review",
+    "build:phone": "rimraf public/phone && parcel build phone/index.html --dist-dir public/phone",
+    "build:projector": "rimraf public/projector && parcel build projector/index.html --dist-dir public/projector --public-url /projector",
+    "build:review": "rimraf public/review && parcel build review/index.html --dist-dir public/review --public-url /review",
     "build": "npm-run-all build:*"
   },
   "keywords": [],
@@ -45,7 +45,7 @@
     "@babel/plugin-transform-runtime": "^7.15.0",
     "@parcel/transformer-sass": "^2.0.0-rc.0",
     "parcel": "^2.0.0-rc.0",
-    "postcss": "^8.3.6",
+    "rimraf": "^3.0.2",
     "sass": "^1.42.0"
   }
 }
