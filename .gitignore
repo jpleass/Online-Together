@@ -14,6 +14,9 @@ Icon
 /node_modules
 
 
+# Data & Build
+/public
+
 # Data
-/public/canvas/
-/public/decals/
+# /public/canvas/
+# /public/decals/
