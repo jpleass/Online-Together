@@ -1,7 +1,6 @@
 import Animator from './animator';
 import { MaskedImage } from '../utils/mask';
 import { Pixelate } from './pixelate';
-import { throws } from 'assert';
 
 class Decal {
   constructor ({ image, scale, censored, url, mode }) {

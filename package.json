@@ -2,16 +2,15 @@
   "name": "environment",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "start": "node server/_server",
-    "dev:phone": "parcel watch phone/index.html --out-dir public/phone --no-hmr",
-    "dev:projector": "parcel watch projector/index.html --out-dir public/projector --no-hmr --public-url /projector",
-    "dev:review": "parcel watch review/index.html --out-dir public/review --no-hmr --public-url /review",
+    "dev:phone": "parcel watch phone/index.html --dist-dir public/phone --no-hmr",
+    "dev:projector": "parcel watch projector/index.html --dist-dir public/projector --no-hmr --public-url /projector",
+    "dev:review": "parcel watch review/index.html --dist-dir public/review --no-hmr --public-url /review",
     "dev": "npm-run-all --parallel dev:*",
-    "build:phone": "parcel build phone/index.html --out-dir public/phone",
-    "build:projector": "parcel build projector/index.html --out-dir public/projector --public-url /projector",
-    "build:review": "parcel build review/index.html --out-dir public/review --public-url /review",
+    "build:phone": "parcel build phone/index.html --dist-dir public/phone",
+    "build:projector": "parcel build projector/index.html --dist-dir public/projector --public-url /projector",
+    "build:review": "parcel build review/index.html --dist-dir public/review --public-url /review",
     "build": "npm-run-all build:*"
   },
   "keywords": [],
@@ -29,10 +28,10 @@
     "dotenv-expand": "^5.1.0",
     "express": "^4.17.1",
     "idle-js": "^1.2.0",
+    "lodash": "^4.17.21",
     "lodash.random": "^3.2.0",
     "nanohtml": "^1.9.1",
     "npm-run-all": "^4.1.5",
-    "parcel-bundler": "^1.12.3",
     "pixelate": "0.0.5",
     "pm2": "^5.1.1",
     "projector": "^3.1.0",
@@ -44,6 +43,9 @@
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/plugin-transform-runtime": "^7.15.0",
-    "sass": "^1.41.1"
+    "@parcel/transformer-sass": "^2.0.0-rc.0",
+    "parcel": "^2.0.0-rc.0",
+    "postcss": "^8.3.6",
+    "sass": "^1.42.0"
   }
 }
