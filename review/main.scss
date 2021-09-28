@@ -9,6 +9,35 @@ h1 {
   font-size: 3rem;
 }
 
+.infos {
+
+  text-align: center;
+  font-size: 1.5rem;
+
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+
+  .info_row {
+    margin: 1rem auto;
+  }
+
+  label {
+    margin-right: 1rem;
+  }
+
+  input {
+    background:none;
+    border:none;
+    border-bottom: 1px solid white;
+    color:white;
+    font-size: inherit;
+
+    min-width: 50%;
+  }
+
+}
+
 .decals {
   display: flex;
   flex-wrap: wrap;

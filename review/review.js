@@ -34,6 +34,47 @@ loadDecals().then(loadedDecals => {
   })
 });
 
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    
+    let infos = document.querySelector('.infos');
+
+    Object.entries(data.text).forEach(([key, val]) => {
+      
+      let row = document.createElement('div')
+      let label = document.createElement('label')
+      let input = document.createElement('input')
+      let btn_submit = document.createElement('button')
+
+      row.classList.add(key,"info_row")
+      label.textContent = key
+      input.setAttribute("type","text")
+      input.setAttribute("name",key)
+      input.value = val
+
+      btn_submit.textContent = "update"
+
+      row.append(label)
+      row.append(input)
+      row.append(btn_submit)
+
+      infos.append(row)
+
+
+      btn_submit.addEventListener('click', e => {
+
+        e.preventDefault()
+        let obj = {}
+        obj[key] = input.value
+        socket.emit("review:update_text", obj )
+
+      })
+
+    })
+
+});
+
 socket.on("server:refresh", msg => {
   console.log("server refresh")
   document.querySelectorAll('.decal').forEach(decal => {

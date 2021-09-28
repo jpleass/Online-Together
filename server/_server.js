@@ -16,6 +16,10 @@ const io = socketIO(server);
 
 const TIMEOUT = 60000;
 
+const projectorSocket = io.of('/projector');
+let projectorConnected = false;
+
+
 const phoneSocket = io.of('/phone');
 phoneSocket.on('connection', socket => {
 
@@ -68,72 +72,69 @@ function findObject(obj, list) {
   }
 }
 
-let censoredList;
-fs.readFile("server/censoredDecals.json", "utf8", function readFileCallback( err, data ) {
+let custom_data;
+
+fs.readFile("server/custom_data.json", "utf8", function readFileCallback( err, data ) {
   if (err) {
     console.log(err);
   } else {
-    censoredList = JSON.parse(data);
+    custom_data = JSON.parse(data);
   }
-  console.log(censoredList);
+  console.log(custom_data);
 });
 
 
 // Censor Image  
 const reviewSocket = io.of("/review");
 reviewSocket.on('connection', socket => {
+
   socket.on("review:censor", msg => {
-    fs.readFile('server/censoredDecals.json', 'utf8', function readFileCallback(err, data) {
-      
-      if (err) {
-      
-        console.log(err);
-      
-      } else {
-        
-        censoredList = JSON.parse(data);
 
-        if (!containsObject(msg.decal.src, censoredList.decals)) {
+        if (!containsObject(msg.decal.src, custom_data.decals_censored)) {
 
-          censoredList.decals.push(msg.decal.src);
-          json = JSON.stringify(censoredList);
-          fs.writeFile("server/censoredDecals.json", json, "utf8", function() {
+          custom_data.decals_censored.push(msg.decal.src);
+          let json = JSON.stringify(custom_data);
+          fs.writeFile("server/custom_data.json", json, "utf8", function() {
             console.log("decal censored");
             projectorSocket.emit("server:refresh", msg.decal);
             reviewSocket.emit("server:refresh", msg.decal);
           });
 
-        } else {
+        } else if(!msg.decal.censored) {
           
-          if(!msg.decal.censored) {
-          
-            censoredList.decals.splice(findObject(msg.decal.src, censoredList.decals), 1);
-            json = JSON.stringify(censoredList);
-            fs.writeFile("server/censoredDecals.json", json, "utf8", function() {
+            custom_data.decals_censored.splice(findObject(msg.decal.src, custom_data.decals_censored), 1);
+            let json = JSON.stringify(custom_data);
+            fs.writeFile("server/custom_data.json", json, "utf8", function() {
               console.log("decal uncensored");
               projectorSocket.emit("server:refresh", msg.decal);
               reviewSocket.emit("server:refresh", msg.decal);
             });
-          
-          }
 
         }
 
-      }
-    });
   });
+
+
+  socket.on('review:update_text', msg => {
+    
+    let key = Object.keys(msg)[0];
+    
+    if( key in custom_data.text ) {
+
+      custom_data.text[key] = msg[key]
+      let json = JSON.stringify(custom_data);
+      fs.writeFile("server/custom_data.json", json, "utf8", function() {
+        console.log("text updated", custom_data.text)
+        projectorSocket.emit("server:refresh_text")
+      });
+    
+    }
+  })
+
 });
 
-const projectorSocket = io.of('/projector');
-
-let projectorConnected = false;
 
 projectorSocket.on('connection', socket => {
-
-//   if (projectorConnected) {
-//     socket.disconnect(true);
-//     return;
-//   }
 
   projectorConnected = true;
 
@@ -173,15 +174,19 @@ app.get('/decals/index', (req, res) => {
     .sort((a, b) => a.time - b.time)
     .map(({ url }) => url)
 
-  const censoredFiles = [];
+  const outObj = [];
   files.forEach((file, index) => {
     const fileObj = {
       url: file,
-      censored: containsObject(file, censoredList.decals)
+      censored: containsObject(file, custom_data.decals_censored)
     };
-    censoredFiles.push(fileObj);
+    outObj.push(fileObj);
   })
-  res.json(censoredFiles);
+  res.json(outObj);
+})
+
+app.get('/data', (req, res) => {
+  res.json(custom_data);
 })
 
 
@@ -195,10 +200,3 @@ server.listen(
   process.env.PORT,
   () => console.log(`server listening to ${process.env.HOST}:${process.env.PORT}`)
 )
-
-
-
-// http.createServer(function (req, res) {
-//   res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
-//   res.end();
-// }).listen(80);

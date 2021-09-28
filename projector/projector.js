@@ -15,6 +15,34 @@ loadDecals().then( loadedDecals => loadedDecals.slice(-config.maxDecals).forEach
 
 const $decalCount = document.querySelector('.decalCount')
 
+
+loadInfos = function() {
+  console.log('loadInfos')
+  fetch('/data')
+    .then(response => response.json())
+    .then(data => {
+
+      const overlay = document.querySelector('.overlay')
+      overlay.textContent = ""
+
+      Object.entries(data.text).forEach(([key, val]) => {
+
+        let el = document.createElement('div')
+        el.classList.add(key,'infinite_translate','question')
+
+        el.textContent = val
+
+        overlay.append(el)
+
+      })
+
+  })
+}
+
+loadInfos()
+socket.on("server:refresh_text", loadInfos)
+
+
 const tick = () => {
   TWEEN.update();
   $decalCount.innerHTML = Object.keys( decals ).length;
@@ -80,11 +108,5 @@ const refreshPage = () => {
   loadDecals().then( loadedDecals => loadedDecals.slice(-config.maxDecals).forEach( ( d, i ) => decals[ i ] = d ) );
   clearRender()
 }
-
-window.addEventListener('keypress', (e) => {
-  if (e.key === 'i') {
-    document.querySelector('.instructions').classList.toggle('instructions--hidden')
-  }
-})
 
 export default refreshPage;
