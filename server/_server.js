@@ -1,6 +1,5 @@
 require('dotenv-expand')(require('dotenv').config());
 const http = require('http');
-const https = require('https'); 
 const fs = require('fs');
 const path = require('path');
 const auth = require('./auth')
