@@ -14,7 +14,7 @@ const config = {
   minSpeed: .00002,
   maxSpeed: .00014,
   releaseDuration: 5000,
-  maxDecals: 500,
+  maxDecals: 30,
   blur: 1,
   blur_offset_x: 0,
   blur_offset_y: 0,
