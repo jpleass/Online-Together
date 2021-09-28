@@ -16,7 +16,7 @@ loadDecals().then( loadedDecals => loadedDecals.slice(-config.maxDecals).forEach
 const $decalCount = document.querySelector('.decalCount')
 
 
-loadInfos = function() {
+const loadInfos = function() {
   console.log('loadInfos')
   fetch('/data')
     .then(response => response.json())
