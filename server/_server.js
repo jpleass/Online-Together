@@ -84,28 +84,39 @@ const reviewSocket = io.of("/review");
 reviewSocket.on('connection', socket => {
   socket.on("review:censor", msg => {
     fs.readFile('server/censoredDecals.json', 'utf8', function readFileCallback(err, data) {
+      
       if (err) {
+      
         console.log(err);
+      
       } else {
+        
         censoredList = JSON.parse(data);
+
         if (!containsObject(msg.decal.src, censoredList.decals)) {
+
           censoredList.decals.push(msg.decal.src);
           json = JSON.stringify(censoredList);
           fs.writeFile("server/censoredDecals.json", json, "utf8", function() {
-            console.log("file added");
+            console.log("decal censored");
             projectorSocket.emit("server:refresh", msg.decal);
             reviewSocket.emit("server:refresh", msg.decal);
           });
+
         } else {
+          
           if(!msg.decal.censored) {
+          
             censoredList.decals.splice(findObject(msg.decal.src, censoredList.decals), 1);
             json = JSON.stringify(censoredList);
             fs.writeFile("server/censoredDecals.json", json, "utf8", function() {
-              console.log("file deleted");
+              console.log("decal uncensored");
               projectorSocket.emit("server:refresh", msg.decal);
               reviewSocket.emit("server:refresh", msg.decal);
             });
+          
           }
+
         }
 
       }
