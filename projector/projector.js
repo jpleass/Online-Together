@@ -28,9 +28,9 @@ const loadInfos = function() {
       Object.entries(data.text).forEach(([key, val]) => {
 
         let el = document.createElement('div')
-        el.classList.add(key,'infinite_translate','question')
+        el.classList.add(key,'banderole','question')
 
-        el.textContent = val
+        el.innerHTML = `<div class="banderole-stage"><span>${val} </span><span>${val} </span><span>${val} </span><span>${val} </span></div>`;
 
         overlay.append(el)
 

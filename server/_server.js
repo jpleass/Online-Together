@@ -7,8 +7,6 @@ const express = require('express');
 const socketIO = require('socket.io')
 const app = express();
 
-app.use(express.static(__dirname + '/static', { dotfiles: 'allow' }))
-
 
 const server = http.createServer(app);
 const io = socketIO(server);

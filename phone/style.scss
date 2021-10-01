@@ -1,14 +1,23 @@
+$lime: rgb(126,255,0);
+
+html {
+  font-family: sans-serif;
+}
+
 html, body {
   overflow: hidden;
 }
 
 body {
-  display: flex;
+  position: absolute;
   width: 100%;
   height: 100%;
-  position: absolute;
-  align-items: center;
-  justify-content: center;
+
+  display: flex;
+  flex-wrap: wrap;
+  // align-items: center;
+  // justify-content: center;
+  
   margin:0;
   padding:0;
 }
@@ -22,26 +31,30 @@ canvas {
 }
 
 .done {
-  background: rgba(255,255,255,0.75);
-  padding: 0.5em;
-  font-size: 2em;
+  background: $lime;
+  border-radius: .75rem;
+  padding: 0rem 2.5rem;
+  font-size: 3em;
   line-height: 0;
   text-align: left;
   display: block;
-  height: 2em; width: 2em;
+  height: 1em;
   opacity: 1;
+  border: none;
+  box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+
   &__wrapper {
     position: fixed;
     bottom: 1em;
-    right: 1em;
+    left: 50%;
     z-index: 99;
     text-align: right;
     display: block;
+    transform: translateX(-50%);
   }
 }
 
 #loader {
-  font-family: 'Arial';
   text-transform: uppercase;
   pointer-events: none;
 }
@@ -88,6 +101,11 @@ canvas {
 }
 
 
+
+.input-container {
+  margin: auto auto 6rem auto;
+}
+
 input {
 	width: 0.1px;
 	height: 0.1px;
@@ -97,16 +115,73 @@ input {
 	z-index: -1;
 }
 
-.inputfile + label {
-    display: inline-block;
-    font-size: 0.9em;
-    background-image: linear-gradient(to bottom, #fefefe, #e4e4e4);
-    border: 1px solid #777;
-    padding: 4px 12px;
-    border-radius: 16px;
-    font-family: 'Arial';
+.label-rounded {
+
+  display: block;
+  width: 40vw;
+  height: 40vw;
+  min-width: 150px;
+  min-height: 150px;
+  max-width: 340px;
+  max-height:340px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: $lime;
+  text-align: center;
+
+  text-transform: uppercase;
+
+  display: flex;
+  justify-content: center;
+  align-items:center;
+
+  font-size: 1.75rem;
+
 }
 
 .inputfile + label {
 	cursor: pointer;
+}
+
+body.drawing--enabled {
+  .overlay {
+    opacity: 0;
+  }
+}
+
+.overlay {
+  transition: opacity 0.25s linear;
+  width: 100%;
+  margin-top: 5rem;
+  pointer-events:none;
+}
+
+//background image (cover has weird behavior when applied on the body)
+.overlay:before {
+
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height:100%;
+
+  background-image: url(phone_bg.jpg);
+  background-size: cover;
+  background-position: center;
+
+  z-index: -1;
+}
+
+.question {
+  width: 100%;
+  box-sizing: border-box;
+  padding: .75rem 1rem;
+
+  background: black;
+  color: white;
+  text-transform: uppercase;
+  font-size: 2.375rem;
+  text-align: center;
+  margin-bottom: .25rem;
 }

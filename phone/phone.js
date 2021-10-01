@@ -15,9 +15,9 @@ console.log( socket );
 var getPosition = e => [ e.touches[ 0 ].clientX, e.touches[ 0 ].clientY ];
 
 const createInput = () => html`
-  <div>
+  <div class="input-container">
     <input class="inputfile" type="file" id="file" name="upload" accept="image/*">
-    <label for="file">Choose File</label>
+    <label for="file" class="label-rounded"><p>Upload<br>photo</p></label>
   </div>
 `
 const createButton = () => html`
@@ -27,11 +27,42 @@ const createButton = () => html`
 const createLoader = () => html`
   <div id="loader">Loading.<span class="invisible-dot">.</span><span class="invisible-dot">.</span></div>
 `
+
+const loadInfos = function() {
+  console.log('loadInfos')
+  fetch('/data')
+    .then(response => response.json())
+    .then(data => {
+
+      const overlay = document.createElement('div')
+      overlay.classList.add('overlay')
+
+      Object.entries(data.text).forEach(([key, val]) => {
+
+        let el = document.createElement('div')
+        el.classList.add(key,'question')
+
+        el.innerHTML = `<span>${val}</span>`;
+
+        overlay.append(el)
+
+      })
+
+      document.body.prepend(overlay)
+
+  })
+}
+
+
+//PRESENTING
+loadInfos()
+
 const start = async imageID => {
   
   const id = `${ socket.id }_${ imageID }`
   socket.emit( 'phone:setID', { id } );
   
+
   // CHOOSING
   const input = createInput();
   input.type = 'file';
@@ -68,6 +99,7 @@ const start = async imageID => {
   
   // DRAWING
   document.body.removeChild( loading );
+  document.body.classList.add('drawing--enabled');
   clearInterval(dotInterval);
   const maskedImage = new MaskedImage({
     image: cropImage( image.url, [ canvasSize[ 0 ] * DPR, canvasSize[ 1 ] * DPR ] ),
@@ -100,9 +132,9 @@ const start = async imageID => {
   socket.emit( 'phone:drawingFinished', { id } );
   document.body.removeChild( maskedImage.canvas );
   document.body.removeChild( done );
+  document.body.classList.remove( 'drawing--active', 'drawing--enabled' );
   start( imageID + 1 );
   
 }
 
 socket.once( 'connect', () => start( 0 ) );
-alert('Select an image from your Photo Library');

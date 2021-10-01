@@ -15,13 +15,43 @@ body {
 
 .overlay {
   position:fixed;
-  top:0;
-  width:100%;
+  left: 0;
+  top: 0;
+  width: 100%;
 
   pointer-events:none;
 
   .question {
+
     font-size: 3rem;
+    margin-bottom: .75rem;
+    
+    text-transform: uppercase;
+    color: white;
+    font-family: sans-serif;
+
+    background: black;
+    padding-top: .125rem;
+    padding-bottom: .125rem;
+
+  }
+}
+
+.banderole {
+}
+
+.banderole-stage {
+    animation: infinite-translate 10s linear infinite;
+    white-space: pre;
+    display: inline-block;
+}
+
+@keyframes infinite-translate {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-25%);
   }
 }
 
