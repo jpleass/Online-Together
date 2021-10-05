@@ -84,14 +84,14 @@ body {
   .shape {
     position: absolute;
     left:0;
-    animation: infinite-loop-shapes 40s linear infinite;
+    animation: infinite-loop-shapes 60s linear infinite;
   }
 }
 
 @keyframes infinite-loop-shapes {
   0% {
     // transform: translateX(-100%);
-    left: -100%;
+    left: -200%;
   }
   100% {
     // transform: translateX(0);

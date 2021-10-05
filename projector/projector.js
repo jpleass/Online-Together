@@ -50,8 +50,8 @@ const loadShapes = function() {
         let shape = document.createElement('img')
         shape.classList.add('shape')
         let y = Math.random() * canvas.height - canvas.height * .2;
-        let anim_delay = Math.random() * 40;
-        let anim_duration = Math.random() * 40 + 20;
+        let anim_delay = Math.random() * 100;
+        let anim_duration = Math.random() * 50 + 50;
 
         shape.style.animationDelay = -anim_delay + "s";
         shape.style.animationDuration = anim_duration + "s";
