@@ -10,7 +10,7 @@
 $lime: rgb(126,255,0);
 
 html {
-  font-family: sans-serif;
+  font-family: 'Ribosoma', sans-serif;
 }
 
 html, body {
@@ -144,7 +144,7 @@ input {
   justify-content: center;
   align-items:center;
 
-  font-size: 1.75rem;
+  font-size: 1.5rem;
 
 }
 
@@ -188,7 +188,6 @@ body.drawing--enabled {
   padding: .75rem 1rem;
 
   background: black;
-  font-family: 'Ribosoma', sans-serif;
   font-size: 1.75rem;
   color: white;
   text-transform: uppercase;
