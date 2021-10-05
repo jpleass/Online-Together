@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'Ribosoma';
+    src: url('/public/assets/fonts/Ribosoma-Roman.eot');
+    src: url('/public/assets/fonts/Ribosoma-Roman.eot?#iefix') format('embedded-opentype'),
+         url('/public/assets/fonts/Ribosoma-Roman.woff2') format('woff2'),
+         url('/public/assets/fonts/Ribosoma-Roman.woff') format('woff'),
+         url('/public/assets/fonts/Ribosoma-Roman.svg#Ribosoma') format('svg');
+}
+
 $lime: rgb(126,255,0);
 
 html {
@@ -179,9 +188,10 @@ body.drawing--enabled {
   padding: .75rem 1rem;
 
   background: black;
+  font-family: 'Ribosoma', sans-serif;
+  font-size: 2.375rem;
   color: white;
   text-transform: uppercase;
-  font-size: 2.375rem;
   text-align: center;
   margin-bottom: .25rem;
 }

@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'Ribosoma';
+    src: url('/public/assets/fonts/Ribosoma-Roman.eot');
+    src: url('/public/assets/fonts/Ribosoma-Roman.eot?#iefix') format('embedded-opentype'),
+         url('/public/assets/fonts/Ribosoma-Roman.woff2') format('woff2'),
+         url('/public/assets/fonts/Ribosoma-Roman.woff') format('woff'),
+         url('/public/assets/fonts/Ribosoma-Roman.svg#Ribosoma') format('svg');
+}
+
 html {
   background: black;
 }
@@ -32,7 +41,7 @@ body {
     
     text-transform: uppercase;
     color: white;
-    font-family: sans-serif;
+    font-family: 'Ribosoma', sans-serif;
 
     background: black;
     padding-top: .125rem;
