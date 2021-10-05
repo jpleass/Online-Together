@@ -7,14 +7,14 @@ const gui = new GUI();
 const blend_modes = ["source-over","source-in","source-out","source-atop","destination-over","destination-in","destination-out","destination-atop","lighter","copy","xor","multiply","screen","overlay","darken","lighten","color-dodge","color-burn","hard-light","soft-light","difference","exclusion","hue","saturation","color","luminosity",];
 
 const config = {
-  scale: .6,
-  startingScale: 1.5,
+  scale: 1.2,
+  startingScale: 1.2,
   minScale: .8,
   maxScale: 1,
-  minSpeed: .00002,
-  maxSpeed: .00014,
+  minSpeed: .2,
+  maxSpeed: .9,
   releaseDuration: 5000,
-  maxDecals: 10,
+  maxDecals: 20,
   blur: 2,
   blur_offset_x: 1,
   blur_offset_y: 1,
@@ -28,8 +28,8 @@ gui.add( config, 'scale', .1, 2, .01 );
 gui.add( config, 'startingScale', .1, 3, .01 );
 gui.add( config, 'minScale', .1, 1, .01 );
 gui.add( config, 'maxScale', .1, 1, .01 );
-gui.add( config, 'minSpeed', .00001, .0005, .00001 );
-gui.add( config, 'maxSpeed', .00001, .0005, .00001 );
+gui.add( config, 'minSpeed', .1, 5, .01 );
+gui.add( config, 'maxSpeed', .1, 5, .01 );
 gui.add( config, 'releaseDuration', 100, 10000, 1 );
 gui.add( config, 'maxDecals', 1, 500, 1 );
 gui.add( config, 'blur', -20, 20, .001 );

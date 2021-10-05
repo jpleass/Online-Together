@@ -48,8 +48,8 @@ class Animator {
       this.imageSize[ 1 ] * this.scale * config.scale
     ]
     const noiseSpeed = [
-      map( this.noiseSpeed[ 0 ], 0, 1, config.minSpeed, config.maxSpeed ),
-      map( this.noiseSpeed[ 1 ], 0, 1, config.minSpeed, config.maxSpeed )
+      map( this.noiseSpeed[ 0 ], 0, 1, config.minSpeed * 0.0001, config.maxSpeed * 0.0001 ),
+      map( this.noiseSpeed[ 1 ], 0, 1, config.minSpeed * 0.0001, config.maxSpeed * 0.0001 )
     ]
     const noiseOffset = [
       simplexNoise.noise2D( this.noiseOffset[ 0 ], now * noiseSpeed[ 0 ] ),
