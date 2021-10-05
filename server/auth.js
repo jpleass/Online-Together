@@ -1,6 +1,7 @@
+require('dotenv-expand')(require('dotenv').config());
 const auth = require('basic-auth')
 
-const admins = { together: { password: 'unseen' } }
+const admins = { together: { password: process.env.PROJECTOR_PASSWORD } }
 
 module.exports = function (request, response, next) {
   var user = auth(request)
