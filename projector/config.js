@@ -14,11 +14,11 @@ const config = {
   minSpeed: .00002,
   maxSpeed: .00014,
   releaseDuration: 5000,
-  maxDecals: 30,
-  blur: 1,
-  blur_offset_x: 0,
-  blur_offset_y: 0,
-  blend_mode: "xor",
+  maxDecals: 10,
+  blur: 2,
+  blur_offset_x: 1,
+  blur_offset_y: 1,
+  blend_mode: "source-over",
   blur_iterations: 1
 }
 
@@ -32,7 +32,7 @@ gui.add( config, 'minSpeed', .00001, .0005, .00001 );
 gui.add( config, 'maxSpeed', .00001, .0005, .00001 );
 gui.add( config, 'releaseDuration', 100, 10000, 1 );
 gui.add( config, 'maxDecals', 1, 500, 1 );
-gui.add( config, 'blur', -500, 500, .001 );
+gui.add( config, 'blur', -20, 20, .001 );
 gui.add( config, 'blur_offset_x', -20, 20, .001 );
 gui.add( config, 'blur_offset_y', -20, 20, .001 );
 gui.add( config, 'blend_mode', blend_modes );

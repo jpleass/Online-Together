@@ -7,10 +7,14 @@ body {
  height: 100%;
 }
 
-#globalCanvas {
+.fullscreen {
   position: fixed;
   top:0; left:0; bottom: 0; right: 0;
   width: 100%; height: 100%;
+
+  &#bgCanvas {
+    z-index: -1;
+  }
 }
 
 .overlay {
@@ -41,19 +45,51 @@ body {
 }
 
 .banderole-stage {
-    animation: infinite-translate 10s linear infinite;
+    animation: infinite-loop 10s linear infinite;
     white-space: pre;
     display: inline-block;
 }
 
-@keyframes infinite-translate {
+@keyframes infinite-loop {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-25%);
+    // text is duplicated 5 times so translating the whole by 20% make it loop.
+    transform: translateX(-20%);
   }
 }
+
+
+.shapes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  z-index: -1;
+
+
+  .shape {
+    position: absolute;
+    left:0;
+    animation: infinite-loop-shapes 40s linear infinite;
+  }
+}
+
+@keyframes infinite-loop-shapes {
+  0% {
+    // transform: translateX(-100%);
+    left: -100%;
+  }
+  100% {
+    // transform: translateX(0);
+    left: 100%;
+  }
+}
+
 
 .decalCount {
   position: fixed;

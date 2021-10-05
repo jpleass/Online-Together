@@ -158,6 +158,7 @@ projectorSocket.on('connection', socket => {
 
 app.use('/', express.static('public/phone'));
 app.use('/decals', express.static('public/decals'))
+app.use('/assets', express.static('public/assets'))
 
 
 app.get('/decals/index', (req, res) => {
@@ -184,6 +185,19 @@ app.get('/decals/index', (req, res) => {
 
 app.get('/data', (req, res) => {
   res.json(custom_data);
+})
+
+
+
+app.get('/shapes', (req, res) => {
+  var files = fs.readdirSync('./public/assets/shapes')
+    .map(filename => {
+
+      var url = `/assets/shapes/${filename}`;
+      return url;
+    })
+    
+  res.json(files);
 })
 
 

@@ -15,7 +15,8 @@ Icon
 
 
 # Data & Build
-/public
+/public/*
+!/public/assets
 
 # Data
 # /public/canvas/
