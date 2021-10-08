@@ -7,10 +7,12 @@
     "dev:phone": "parcel watch phone/index.html --dist-dir public/phone --no-hmr",
     "dev:projector": "parcel watch projector/index.html --dist-dir public/projector --no-hmr --public-url /projector",
     "dev:review": "parcel watch review/index.html --dist-dir public/review --no-hmr --public-url /review",
+    "dev:screenshots": "parcel watch screenshots/index.html --dist-dir public/screenshots --no-hmr --public-url /screenshots",
     "dev": "npm-run-all --parallel dev:*",
     "build:phone": "rimraf public/phone && parcel build phone/index.html --dist-dir public/phone --no-source-maps",
     "build:projector": "rimraf public/projector && parcel build projector/index.html --dist-dir public/projector --public-url /projector --no-source-maps",
     "build:review": "rimraf public/review && parcel build review/index.html --dist-dir public/review --public-url /review --no-source-maps",
+    "build:screenshots": "rimraf public/screenshots && parcel build screenshots/index.html --dist-dir public/screenshots --public-url /screenshots --no-source-maps",
     "build": "npm-run-all build:*"
   },
   "keywords": [],

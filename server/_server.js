@@ -158,6 +158,7 @@ projectorSocket.on('connection', socket => {
 
 app.use('/', express.static('public/phone'));
 app.use('/decals', express.static('public/decals'))
+app.use('/canvas', express.static('public/canvas'))
 app.use('/assets', express.static('public/assets'))
 
 
@@ -188,7 +189,6 @@ app.get('/data', (req, res) => {
 })
 
 
-
 app.get('/shapes', (req, res) => {
   var files = fs.readdirSync('./public/assets/shapes')
     .map(filename => {
@@ -200,10 +200,22 @@ app.get('/shapes', (req, res) => {
   res.json(files);
 })
 
+app.get('/canvas', (req, res) => {
+  var files = fs.readdirSync('./public/canvas')
+    .map(filename => {
+
+      var url = `/canvas/${filename}`;
+      return url;
+    })
+    
+  res.json(files);
+})
+
 
 app.use(auth);
-app.use('/projector', express.static('public/projector'));
-app.use('/review', express.static('public/review'));
+app.use('/projector', express.static('public/projector'))
+app.use('/review', express.static('public/review'))
+app.use('/screenshots', express.static('public/screenshots'))
 
 
   
