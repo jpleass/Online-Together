@@ -46,9 +46,8 @@ export const render = decals => {
   off_ctx.globalCompositeOperation = "source-over";
   off_ctx.globalAlpha = 1;
 
-  for(let i = 0; i < config.blur_iterations; i++) {
-    off_ctx.drawImage(off_canvas, x, y, off_canvas.width + config.blur, off_canvas.height + config.blur)
-  }
+  off_ctx.drawImage(off_canvas, x, y, off_canvas.width + config.blur, off_canvas.height + config.blur)
+  
 
   // draw feedback blur on background canvas
   bg_ctx.drawImage(off_canvas, 0,0);

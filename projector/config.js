@@ -24,7 +24,6 @@ const config = {
   blur_offset_x: 1,
   blur_offset_y: 1,
   blend_mode: "source-over",
-  blur_iterations: 1
 }
 
 gui.remember(config);
