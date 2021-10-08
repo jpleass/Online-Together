@@ -24,6 +24,8 @@ const config = {
   blur_offset_x: 1,
   blur_offset_y: 1,
   blend_mode: "source-over",
+  title1_loop_duration: 10,
+  title2_loop_duration: 10,
 }
 
 gui.remember(config);
@@ -36,11 +38,23 @@ gui.add( config, 'minSpeed', .1, 5, .01 );
 gui.add( config, 'maxSpeed', .1, 5, .01 );
 gui.add( config, 'releaseDuration', 100, 10000, 1 );
 gui.add( config, 'maxDecals', 1, 500, 1 );
-gui.add( config, 'blur', -20, 20, .001 );
-gui.add( config, 'blur_offset_x', -20, 20, .001 );
-gui.add( config, 'blur_offset_y', -20, 20, .001 );
-gui.add( config, 'blend_mode', blend_modes );
-gui.add( config, 'blur_iterations', 1, 50, 1 );
+
+let blur_folder = gui.addFolder('blur')
+blur_folder.add( config, 'blur', -20, 20, .001 );
+blur_folder.add( config, 'blur_offset_x', -20, 20, .001 );
+blur_folder.add( config, 'blur_offset_y', -20, 20, .001 );
+blur_folder.add( config, 'blend_mode', blend_modes );
+
+gui.add( config, 'title1_loop_duration', 1, 50, 0.1 )
+  .onFinishChange( function(e) {
+    const val = this.getValue()
+    document.querySelectorAll('.banderole-stage')[0].style.animationDuration = val+'s'
+  })
+gui.add( config, 'title2_loop_duration', 1, 50, 0.1 )
+  .onFinishChange( function(e) {
+    const val = this.getValue()
+    document.querySelectorAll('.banderole-stage')[1].style.animationDuration = val+'s'
+  })
 
 var resetButton = { reset: () => { refreshPage(); } };
 gui.add(resetButton,'reset');
