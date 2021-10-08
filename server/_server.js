@@ -204,9 +204,14 @@ app.get('/canvas', (req, res) => {
   var files = fs.readdirSync('./public/canvas')
     .map(filename => {
 
+      var file = path.join(process.cwd(), 'public', 'canvas', filename);
       var url = `/canvas/${filename}`;
-      return url;
+      var time = fs.statSync(file).mtime.getTime();
+
+      return {url, time};
     })
+    .sort( (a,b) => b.time - a.time )
+    .map(({ url }) => url)
     
   res.json(files);
 })
