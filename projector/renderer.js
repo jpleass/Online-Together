@@ -60,3 +60,19 @@ export function clearRender() {
   bg_ctx.clearRect( 0, 0, canvas.width, canvas.height );
   ctx.clearRect( 0, 0, canvas.width, canvas.height );
 }
+
+
+export function getScreenshot() {
+
+  const tmp_canvas = document.createElement("canvas")
+  const tmp_ctx = tmp_canvas.getContext('2d')
+
+  tmp_canvas.width = canvas.width
+  tmp_canvas.height = canvas.height
+
+  tmp_ctx.drawImage(bg_canvas, 0, 0)
+  tmp_ctx.drawImage(canvas, 0, 0)
+
+  return tmp_canvas;
+
+}

@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 import TWEEN from '@tweenjs/tween.js';
 import loadDecals from './load';
 import loadImage from '../utils/loadImage';
-import { canvas, render, clearRender } from './renderer';
+import { canvas, render, clearRender, getScreenshot } from './renderer';
 import Decal, { placeDecals } from './decal';
 import config from './config';
 
@@ -119,7 +119,7 @@ var onFinished = ({ id }) => {
   socket.emit( 'projector:saveDecal', { id, data: decal.toDataURL() })
 
   setTimeout(() => {
-    socket.emit('projector:saveCanvas', { id, data: canvas.toDataURL() })
+    socket.emit('projector:saveCanvas', { id, data: getScreenshot().toDataURL() })
   }, 100);
 
 }

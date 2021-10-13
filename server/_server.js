@@ -9,7 +9,10 @@ const app = express();
 
 
 const server = http.createServer(app);
-const io = socketIO(server);
+const io = socketIO(server, {
+  // max socket payload of 20Mo, for "projector:saveCanvas"
+  maxHttpBufferSize: 2e7
+});
 
 const TIMEOUT = 60000;
 
