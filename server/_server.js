@@ -148,7 +148,7 @@ projectorSocket.on('connection', socket => {
     if (!fs.existsSync(file)) fs.writeFileSync(file, base64Data, 'base64');
   })
 
-  socket.on('projector:saveCanvas', ({ data }) => {
+  socket.on('projector:saveCanvas', ({ id, data }) => {
     var base64Data = data.replace(/^data:image\/png;base64,/, "");
     var file = `./public/canvas/${Date.now()}.png`;
     if (!fs.existsSync(file)) fs.writeFileSync(file, base64Data, 'base64');
