@@ -16,10 +16,25 @@ var getPosition = e => [ e.touches[ 0 ].clientX, e.touches[ 0 ].clientY ];
 
 const createInput = () => html`
   <div class="input-container">
-    <input class="inputfile" type="file" id="file" name="upload" accept="image/*">
-    <label for="file" class="label-rounded"><p>Upload<br>photo</p></label>
+    <button type="button" class="label-rounded trigger-legal-notice"><span>Upload<br>photo</span></button>
+    <div class="legal-notice">
+      <div class="legal-notice-container">
+        <p>Door deel te nemen aan Denkbeeld ga je akkoord met de <a href="https://www.kunsthal.nl/nl/avg-tbv-reflect-schermen/" target="_blank">Deelnemersvoorwaarden</a> en verklaar je je op de hoogte van ons privacybeleid.</p>
+        <p><span class="text-greyed">By participating in Reflect, you agree to the <a href="https://www.kunsthal.nl/nl/avg-tbv-reflect-schermen/" target="_blank">terms and conditions</a> and acknowledge that you are aware of our privacy policy.</span></p>
+        <div>
+          <input class="inputfile" type="file" id="file" name="upload" accept="image/*">
+          <label for="file" class="checkbox-before">
+            <span>
+              Ja, ik wil deelnemen.<br>
+              <span class="text-greyed">Yes, I wish to participate.</span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
   </div>
 `
+
 const createButton = () => html`
   <div class="done__wrapper"><button class="done">✓</button></div>
 `
@@ -65,8 +80,10 @@ const start = async imageID => {
 
   // CHOOSING
   const input = createInput();
-  input.type = 'file';
   document.body.appendChild( input );
+  input.querySelector('.trigger-legal-notice').addEventListener('click', (e) => {
+    input.classList.add('legal-visible')
+  })
   const image = await nextFileInput( input.querySelector('.inputfile') );
   
   // UPLOADING
