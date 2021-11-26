@@ -199,6 +199,9 @@
     font-family: 'Karrik', sans-serif;
     font-size: 1.5rem;
 
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
     opacity: 0;
     visibility: hidden;
 
