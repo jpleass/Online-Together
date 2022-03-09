@@ -11,59 +11,59 @@ const socket = io( `${ window.location.host }/projector` );
 
 const decals = {};
 
-const loadInfos = function() {
+// const loadInfos = function() {
 
-  fetch('/data')
-    .then(response => response.json())
-    .then(data => {
+//   fetch('/data')
+//     .then(response => response.json())
+//     .then(data => {
 
-      const overlay = document.querySelector('.overlay')
-      overlay.textContent = ""
+//       const overlay = document.querySelector('.overlay')
+//       overlay.textContent = ""
 
-      Object.entries(data.text).forEach(([key, val]) => {
+//       Object.entries(data.text).forEach(([key, val]) => {
 
-        let el = document.createElement('div')
-        el.classList.add(key,'banderole','question')
+//         let el = document.createElement('div')
+//         el.classList.add(key,'banderole','question')
 
-        // duplicated 5 times to be able to loop the animation
-        el.innerHTML = `<div class="banderole-stage"><span>${val} </span><span>${val} </span><span>${val} </span><span>${val} </span><span>${val} </span></div>`;
+//         // duplicated 5 times to be able to loop the animation
+//         el.innerHTML = `<div class="banderole-stage"><span>${val} </span><span>${val} </span><span>${val} </span><span>${val} </span><span>${val} </span></div>`;
 
-        overlay.append(el)
+//         overlay.append(el)
 
-      })
+//       })
 
-  })
-}
+//   })
+// }
 
 
-const loadShapes = function() {
+// const loadShapes = function() {
 
-   fetch('/shapes')
-    .then(response => response.json())
-    .then(data => {
+//    fetch('/shapes')
+//     .then(response => response.json())
+//     .then(data => {
 
-      const shapes_container = document.querySelector('.shapes')
-      shapes_container.textContent = ""
+//       const shapes_container = document.querySelector('.shapes')
+//       shapes_container.textContent = ""
 
-      data.forEach(item => {
+//       data.forEach(item => {
 
-        let shape = document.createElement('img')
-        shape.classList.add('shape')
-        let y = Math.random() * canvas.height - canvas.height * .2;
-        let anim_delay = Math.random() * 100;
-        let anim_duration = Math.random() * 50 + 50;
+//         let shape = document.createElement('img')
+//         shape.classList.add('shape')
+//         let y = Math.random() * canvas.height - canvas.height * .2;
+//         let anim_delay = Math.random() * 100;
+//         let anim_duration = Math.random() * 50 + 50;
 
-        shape.style.animationDelay = -anim_delay + "s";
-        shape.style.animationDuration = anim_duration + "s";
-        shape.style.top = y + "px";
-        shape.src = item
-        shapes_container.append(shape)
+//         shape.style.animationDelay = -anim_delay + "s";
+//         shape.style.animationDuration = anim_duration + "s";
+//         shape.style.top = y + "px";
+//         shape.src = item
+//         shapes_container.append(shape)
 
-      })
+//       })
 
-    })
+//     })
 
-}
+// }
 
 let raf;
 
@@ -82,9 +82,9 @@ loadDecals().then( loadedDecals => {
   tick()
 });
 
-loadInfos()
-socket.on("server:refresh_text", loadInfos)
-loadShapes()
+// loadInfos()
+// socket.on("server:refresh_text", loadInfos)
+// loadShapes()
 
 
 socket.on( 'phone:uploadImage', ({ id, imageSrc }) => {

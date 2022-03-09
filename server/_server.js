@@ -1,12 +1,15 @@
-require('dotenv-expand')(require('dotenv').config());
+const dotenv_conf = require('dotenv').config();
+const dotenv_expand = require('dotenv-expand');
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const auth = require('./auth')
+const auth = require('./auth');
 const express = require('express');
-const socketIO = require('socket.io')
+const socketIO = require('socket.io');
 const app = express();
 
+
+dotenv_expand.expand(dotenv_conf);
 
 const server = http.createServer(app);
 const io = socketIO(server, {

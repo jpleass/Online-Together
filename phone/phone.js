@@ -15,23 +15,9 @@ console.log( socket );
 var getPosition = e => [ e.touches[ 0 ].clientX, e.touches[ 0 ].clientY ];
 
 const createInput = () => html`
-  <div class="input-container">
-    <button type="button" class="label-rounded trigger-legal-notice"><span>Upload<br>photo</span></button>
-    <div class="legal-notice">
-      <div class="legal-notice-container">
-        <p>Door deel te nemen aan Denkbeeld ga je akkoord met de <a href="https://www.kunsthal.nl/nl/avg-tbv-reflect-schermen/" target="_blank">Deelnemersvoorwaarden</a> en verklaar je je op de hoogte van ons privacybeleid.</p>
-        <p><span class="text-greyed">By participating in Reflect, you agree to the <a href="https://www.kunsthal.nl/nl/avg-tbv-reflect-schermen/" target="_blank">terms and conditions</a> and acknowledge that you are aware of our privacy policy.</span></p>
-        <div>
-          <input class="inputfile" type="file" id="file" name="upload" accept="image/*">
-          <label for="file" class="checkbox-before">
-            <span>
-              Ja, ik wil deelnemen.<br>
-              <span class="text-greyed">Yes, I wish to participate.</span>
-            </span>
-          </label>
-        </div>
-      </div>
-    </div>
+  <div>
+    <input class="inputfile" type="file" id="file" name="upload" accept="image/*">
+    <label for="file">Choose File</label>
   </div>
 `
 
@@ -43,34 +29,34 @@ const createLoader = () => html`
   <div id="loader">Loading.<span class="invisible-dot">.</span><span class="invisible-dot">.</span></div>
 `
 
-const loadInfos = function() {
-  console.log('loadInfos')
-  fetch('/data')
-    .then(response => response.json())
-    .then(data => {
+// const loadInfos = function() {
+//   console.log('loadInfos')
+//   fetch('/data')
+//     .then(response => response.json())
+//     .then(data => {
 
-      const overlay = document.createElement('div')
-      overlay.classList.add('overlay')
+//       const overlay = document.createElement('div')
+//       overlay.classList.add('overlay')
 
-      Object.entries(data.text).forEach(([key, val]) => {
+//       Object.entries(data.text).forEach(([key, val]) => {
 
-        let el = document.createElement('div')
-        el.classList.add(key,'question')
+//         let el = document.createElement('div')
+//         el.classList.add(key,'question')
 
-        el.innerHTML = `<span>${val}</span>`;
+//         el.innerHTML = `<span>${val}</span>`;
 
-        overlay.append(el)
+//         overlay.append(el)
 
-      })
+//       })
 
-      document.body.prepend(overlay)
+//       document.body.prepend(overlay)
 
-  })
-}
+//   })
+// }
 
 
-//PRESENTING
-loadInfos()
+// //PRESENTING
+// loadInfos()
 
 const start = async imageID => {
   
@@ -81,9 +67,9 @@ const start = async imageID => {
   // CHOOSING
   const input = createInput();
   document.body.appendChild( input );
-  input.querySelector('.trigger-legal-notice').addEventListener('click', (e) => {
-    input.classList.add('legal-visible')
-  })
+  // input.querySelector('.trigger-legal-notice').addEventListener('click', (e) => {
+  //   input.classList.add('legal-visible')
+  // })
   const image = await nextFileInput( input.querySelector('.inputfile') );
   
   // UPLOADING

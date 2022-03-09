@@ -1,5 +1,8 @@
-require('dotenv-expand')(require('dotenv').config());
+const dotenv_conf = require('dotenv').config();
+const dotenv_expand = require('dotenv-expand');
 const auth = require('basic-auth')
+
+dotenv_expand.expand(dotenv_conf);
 
 const admins = { together: { password: process.env.PROJECTOR_PASSWORD } }
 
