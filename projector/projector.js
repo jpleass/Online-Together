@@ -88,9 +88,9 @@ loadDecals().then( loadedDecals => {
 
 
 socket.on( 'phone:uploadImage', ({ id, imageSrc }) => {
-  console.log( 'uploadImage', id, imageSrc )
+  // console.log( 'uploadImage', id, imageSrc )
   loadImage( {url: imageSrc, censored: false} ).then( image => {
-    console.log( 'loaded image', image );
+    // console.log( 'loaded image', image );
     decals[ id ] = new Decal({ image: image.url, mode: 'add', scale: 1, censored: false });
     placeDecals( Object.values( decals ), [ canvas.width, canvas.height ] );
     socket.emit( 'projector:ready', { id });
@@ -98,14 +98,14 @@ socket.on( 'phone:uploadImage', ({ id, imageSrc }) => {
 })
 
 socket.on( 'phone:touchstart', ({ id, position }) => {
-  console.log( 'touchstart', id, position )
+  // console.log( 'touchstart', id, position )
   var decal = decals[ id ];
   if ( !decal ) return;
   decal.onTouchStart( position );
 })
 
 socket.on( 'phone:touchmove', ({ id, position }) => {
-  console.log( 'touchmove', id, position )
+  // console.log( 'touchmove', id, position )
   var decal = decals[ id ];
   if ( !decal ) return;
   decal.onTouchMove( position );

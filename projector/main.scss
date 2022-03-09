@@ -1,11 +1,11 @@
-@font-face {
-    font-family: 'Ribosoma';
-    src: url('/public/assets/fonts/Ribosoma-Roman.eot');
-    src: url('/public/assets/fonts/Ribosoma-Roman.eot?#iefix') format('embedded-opentype'),
-         url('/public/assets/fonts/Ribosoma-Roman.woff2') format('woff2'),
-         url('/public/assets/fonts/Ribosoma-Roman.woff') format('woff'),
-         url('/public/assets/fonts/Ribosoma-Roman.svg#Ribosoma') format('svg');
-}
+// @font-face {
+//     font-family: 'Ribosoma';
+//     src: url('/public/assets/fonts/Ribosoma-Roman.eot');
+//     src: url('/public/assets/fonts/Ribosoma-Roman.eot?#iefix') format('embedded-opentype'),
+//          url('/public/assets/fonts/Ribosoma-Roman.woff2') format('woff2'),
+//          url('/public/assets/fonts/Ribosoma-Roman.woff') format('woff'),
+//          url('/public/assets/fonts/Ribosoma-Roman.svg#Ribosoma') format('svg');
+// }
 
 html {
   background: black;
@@ -26,38 +26,38 @@ body {
   }
 }
 
-.overlay {
-  position:fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
+// .overlay {
+//   position:fixed;
+//   left: 0;
+//   top: 0;
+//   width: 100%;
 
-  pointer-events:none;
+//   pointer-events:none;
 
-  .question {
+//   .question {
 
-    font-size: 3rem;
-    margin-bottom: .75rem;
+//     font-size: 3rem;
+//     margin-bottom: .75rem;
     
-    text-transform: uppercase;
-    color: white;
-    font-family: 'Ribosoma', sans-serif;
+//     text-transform: uppercase;
+//     color: white;
+//     font-family: 'Ribosoma', sans-serif;
 
-    background: black;
-    padding-top: .125rem;
-    padding-bottom: .125rem;
+//     background: black;
+//     padding-top: .125rem;
+//     padding-bottom: .125rem;
 
-  }
-}
+//   }
+// }
 
-.banderole {
-}
+// .banderole {
+// }
 
-.banderole-stage {
-    animation: infinite-loop 10s linear infinite;
-    white-space: pre;
-    display: inline-block;
-}
+// .banderole-stage {
+//     animation: infinite-loop 10s linear infinite;
+//     white-space: pre;
+//     display: inline-block;
+// }
 
 @keyframes infinite-loop {
   0% {
@@ -70,23 +70,23 @@ body {
 }
 
 
-.shapes {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+// .shapes {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   overflow: hidden;
 
-  z-index: -1;
+//   z-index: -1;
 
 
-  .shape {
-    position: absolute;
-    left:0;
-    animation: infinite-loop-shapes 60s linear infinite;
-  }
-}
+//   .shape {
+//     position: absolute;
+//     left:0;
+//     animation: infinite-loop-shapes 60s linear infinite;
+//   }
+// }
 
 @keyframes infinite-loop-shapes {
   0% {
@@ -107,7 +107,7 @@ body {
   padding: 1em;
   font-size: 2em;
   color: white;
-  font-family: 'Arial';
+  font-family: 'Arial', sans-serif;
   z-index: 99;
   display: none;
 }
